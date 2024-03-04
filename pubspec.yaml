@@ -23,6 +23,7 @@ dependencies:
   uuid: ^4.3.3
   flutter_svg: ^2.0.9
   lottie: ^3.0.0
+  extended_masked_text: ^2.3.1
 
 dev_dependencies:
   flutter_test:

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:market_list/src/core/app.binding.dart';
 import 'package:market_list/src/core/app.module.dart';
 import 'package:market_list/src/modules/navigation/navigation.module.dart';
+import 'package:market_list/src/themes/market.theme.dart';
 
 class MarketList extends GetView {
   const MarketList({super.key});
@@ -15,6 +16,7 @@ class MarketList extends GetView {
       title: 'Market List',
       getPages: AppModule().collectRoutes(),
       initialBinding: AppBinding(),
+      theme: AppTheme.themeLight,
       enableLog: kDebugMode,
       debugShowCheckedModeBanner: kDebugMode,
       initialRoute: NavigationRoute.name,

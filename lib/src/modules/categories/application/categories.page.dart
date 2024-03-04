@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:market_list/src/modules/categories/application/categories.controller.dart';
-import 'package:market_list/src/modules/categories/application/components/bottomsheet_action_category.component.dart';
-import 'package:market_list/src/modules/categories/application/widgets/category.empty.widget.dart';
 import 'package:market_list/src/shared/constants.dart';
 import 'package:market_list/src/shared/utils/sizing.dart';
+import 'package:market_list/src/shared/widgets/bottomsheet_actions.widget.dart';
+import 'package:market_list/src/shared/widgets/empty.widget.dart';
 
 import 'components/bottomsheet_create_category.component copy.dart';
+import 'components/bottomsheet_delete.category.dart';
+import 'components/bottomsheet_edit_category.component.dart';
 
 class CategoriesPage extends GetView<CategoriesController> {
   const CategoriesPage({super.key});
@@ -15,9 +17,7 @@ class CategoriesPage extends GetView<CategoriesController> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: controller.scaffoldKey,
-      appBar: AppBar(
-        title: const Text('Categorias'),
-      ),
+      appBar: AppBar(title: const Text('Categorias')),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(
@@ -43,7 +43,7 @@ class CategoriesPage extends GetView<CategoriesController> {
                 () => controller.isLoading.value
                     ? const Center(child: CircularProgressIndicator())
                     : controller.categories.isEmpty
-                        ? const CategoryEmpty()
+                        ? const EmptyPage()
                         : ListView.builder(
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),
@@ -59,7 +59,10 @@ class CategoriesPage extends GetView<CategoriesController> {
                                       icon: const Icon(Icons.edit),
                                       onPressed: () {
                                         controller.selectedCategory.value = category;
-                                        BottomsheetActionCategory().show();
+                                        BottomsheetAction(
+                                          onEdit: () => BottomsheetEditCategory().show(),
+                                          onDelete: () => BottomsheetDeleteCategory().show(),
+                                        ).show();
                                       },
                                     ),
                                   ),

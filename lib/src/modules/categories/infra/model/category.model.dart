@@ -9,12 +9,12 @@ class CategoryModel extends CategoryEntity {
     super.image,
   });
 
-  factory CategoryModel.fromHive(CategoriesHive hive) {
+  factory CategoryModel.fromHive(CategoriesHive? hive) {
     return CategoryModel(
-      id: hive.id,
-      name: hive.name,
-      icon: hive.icon,
-      image: hive.image,
+      id: hive?.id ?? '',
+      name: hive?.name ?? '',
+      icon: hive?.icon,
+      image: hive?.image,
     );
   }
 }
